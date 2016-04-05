@@ -13,6 +13,8 @@ output:
 
 This document was laste edited on _`r format(Sys.time(), "%a %b %d %Y")`_
 
+[Home](../../index.html)
+
 ------
 
 ```{r setup, include=FALSE}
