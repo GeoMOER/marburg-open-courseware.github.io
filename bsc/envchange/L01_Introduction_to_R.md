@@ -7,6 +7,15 @@ This document was laste edited on _Di Apr 05 2016_
 
 [Home](../../index.html)
 
+<div class="jenhome"><a href="../../index.html" title="Home"><img src="http://api.ning.com:80/files/YpAEDK09C4*ID8ykSF2GmoAS4g0br3tbqLvDzA1NY3RcZzrv9HxsnBE1whmnfQMUkyzEMSGlTktXd0hS-K5f1w8xyv4layRL/jenhome.png" alt="Home" style="z-index:999;position:fixed;top:20px;right:5px;"></a></div>
+<script type="text/javascript" language="javascript">
+x$(document).ready(function()  {
+if (x$("div.xg_widget_main_index_index").length > 0) { 
+x$('div.jenhome').css('display','none'); 
+}
+});
+</script>
+
 ------
 
 
