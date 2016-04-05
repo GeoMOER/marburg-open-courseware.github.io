@@ -6,7 +6,7 @@ output:
     keep_md: yes
     theme: cerulean
     toc: yes
-    toc_float: true
+    toc_float: yes
 ---
 
 ```{r setup, include=FALSE}

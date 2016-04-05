@@ -3,10 +3,11 @@ title: "E01 - Introduction to R"
 author: "Tim Appelhans & Hanna Meyer"
 output: 
   html_document: 
+    highlight: textmate
     keep_md: yes
-    theme: cerulean
+    theme: flatly
     toc: yes
-    toc_float: true
+    toc_float: yes
 ---
 
 ![](http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png) (CC-BY-NC-SA)
