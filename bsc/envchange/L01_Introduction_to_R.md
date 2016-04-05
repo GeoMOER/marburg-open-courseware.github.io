@@ -5,9 +5,7 @@ Tim Appelhans & Hanna Meyer
 
 This document was laste edited on _Di Apr 05 2016_
 
-[Home](../../index.html)
-
-<div class="jenhome"><a href="../../index.html" title="Home"><img src="http://api.ning.com:80/files/YpAEDK09C4*ID8ykSF2GmoAS4g0br3tbqLvDzA1NY3RcZzrv9HxsnBE1whmnfQMUkyzEMSGlTktXd0hS-K5f1w8xyv4layRL/jenhome.png" alt="Home" style="z-index:999;position:fixed;top:20px;right:5px;"></a></div>
+<div class="jenhome"><a href="../../index.html" title="Home"><img src="https://pixabay.com/static/uploads/photo/2015/12/28/02/58/home-1110868_960_720.png" alt="Home" style="z-index:999;position:fixed;top:20px;right:20px;width:30px;height:30px"></a></div>
 <script type="text/javascript" language="javascript">
 x$(document).ready(function()  {
 if (x$("div.xg_widget_main_index_index").length > 0) { 
