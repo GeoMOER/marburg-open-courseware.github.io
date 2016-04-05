@@ -1,0 +1,19 @@
+---
+title: "Marburg Open Courseware - excercise material"
+author: "Environmental Informatics Marburg"
+output: 
+  html_document: 
+    keep_md: yes
+    theme: cerulean
+    toc: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## MsC courses
+
+## BsC courses
+
+### Global Environmental Change (19 071 06060)
