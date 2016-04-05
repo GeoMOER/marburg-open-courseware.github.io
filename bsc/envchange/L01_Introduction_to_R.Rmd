@@ -1,5 +1,5 @@
 ---
-title: "L01 - Introduction to R"
+title: "E01 - Introduction to R"
 author: "Tim Appelhans & Hanna Meyer"
 output: 
   html_document: 
@@ -81,8 +81,9 @@ c(1, one, mytext)
 ### matrices
 
 ```{r matrix}
-class(1)
-class(one)
+matrix(1:9, ncol = 3, nrow = 3)
 ```
 
+### lists
 
+### data frames

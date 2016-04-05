@@ -1,4 +1,4 @@
-# L01 - Introduction to R
+# E01 - Introduction to R
 Tim Appelhans & Hanna Meyer  
 
 ![](http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png) (CC-BY-NC-SA)
@@ -144,19 +144,16 @@ c(1, one, mytext)
 
 
 ```r
-class(1)
+matrix(1:9, ncol = 3, nrow = 3)
 ```
 
 ```
-## [1] "numeric"
+##      [,1] [,2] [,3]
+## [1,]    1    4    7
+## [2,]    2    5    8
+## [3,]    3    6    9
 ```
 
-```r
-class(one)
-```
+### lists
 
-```
-## [1] "numeric"
-```
-
-
+### data frames
