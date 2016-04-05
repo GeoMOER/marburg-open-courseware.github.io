@@ -1,0 +1,78 @@
+---
+title: "L01 - Introduction to R"
+author: "Tim Appelhans & Hanna Meyer"
+output: 
+  html_document: 
+    keep_md: yes
+    theme: cerulean
+    toc: yes
+---
+
+![](http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png) (CC-BY-NC-SA)
+
+This document was laste edited on _`r format(Sys.time(), "%a %b %d %Y")`_
+
+------
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R as a calculator
+R can be used as a simple calculator. Standard syntax is valid.
+
+```{r calculator}
+1 + 1
+5^2
+sqrt(25)
+```
+
+## Object definition
+To define objects in R we use `<-` to assign a value (or anything really) to a named object.
+
+```{r objects}
+one <- 2
+one + one
+one + 1
+
+mytext <- c("I", "am", "hungry")
+mytext
+```
+
+## Getting help
+To access R's built-in help pages use `help(<functionName>)` or simply `?`
+
+```{r help}
+?c
+```
+
+## Working directory
+To set the working directory (i.e. the folder on the disk where R is pointing to) use `setwd()`
+
+```{r wd}
+getwd()
+setwd("/home/ede/tappelhans/uni/marburg/lehre/2016/ss/PS_global_change")
+```
+
+
+## Object types
+**First rule of R:** *Everything is possible*  
+**Second rule of R:** *Everything is a vector*
+
+### vectors
+
+```{r numeric}
+class(1)
+class(c(1, one))
+class(c(1, one, mytext))
+c(1, one, mytext)
+```
+
+### matrices
+
+```{r matrix}
+class(1)
+class(one)
+```
+
+
