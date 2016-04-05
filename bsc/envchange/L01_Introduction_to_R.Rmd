@@ -6,6 +6,7 @@ output:
     keep_md: yes
     theme: cerulean
     toc: yes
+    toc_float: true
 ---
 
 ![](http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png) (CC-BY-NC-SA)

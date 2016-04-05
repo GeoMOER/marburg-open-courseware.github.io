@@ -84,7 +84,7 @@ getwd()
 ```
 
 ```
-## [1] "/home/ede/tappelhans/uni/marburg/lehre/2016/ss/PS_global_change/code"
+## [1] "/home/ede/tappelhans/uni/marburg/lehre/git/pages/marburg-open-courseware.github.io/bsc/envchange"
 ```
 
 ```r
