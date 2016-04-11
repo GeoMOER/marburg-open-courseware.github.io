@@ -3,6 +3,8 @@ Environmental Informatics Marburg
 
 
 
+![](logo.png)
+
 ## MsC courses
 
 ## BsC courses

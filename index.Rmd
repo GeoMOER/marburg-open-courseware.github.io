@@ -13,6 +13,8 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+![](logo.png)
+
 ## MsC courses
 
 ## BsC courses
