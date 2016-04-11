@@ -108,6 +108,14 @@ lst[[5]][[2]][[3]]
 
 lst[[5]]$var2
 
+#' ### names of data frames
+#' we can retrieve the names
+names(df)
+
+#' we can also set names
+names(df) <- c("numbers", "letters", "NoData")
+df
+
 #' ### Saving data
 #' we can easily write data to the disk
 

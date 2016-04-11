@@ -112,7 +112,7 @@ $(document).ready(function () {
 </div>
 
 
-<p>Last edited: 2016-04-11 19:15:52</p>
+<p>Last edited: 2016-04-11 19:29:26</p>
 <div id="r-as-a-calculator" class="section level3">
 <h3>R as a calculator</h3>
 <p>R can be used as a simple calculator. Standard syntax is valid.</p>
@@ -283,6 +283,21 @@ lst</code></pre>
 ## Levels: a b c d e</code></pre>
 </div>
 </div>
+<div id="names-of-data-frames" class="section level3">
+<h3>names of data frames</h3>
+<p>we can retrieve the names</p>
+<pre class="r"><code>names(df)</code></pre>
+<pre><code>## [1] &quot;var1&quot; &quot;var2&quot; &quot;var3&quot;</code></pre>
+<p>we can also set names</p>
+<pre class="r"><code>names(df) &lt;- c(&quot;numbers&quot;, &quot;letters&quot;, &quot;NoData&quot;)
+df</code></pre>
+<pre><code>##   numbers letters NoData
+## 1       1       a     NA
+## 2       2       b     NA
+## 3       3       c     NA
+## 4       4       d     NA
+## 5       5       e     NA</code></pre>
+</div>
 <div id="saving-data" class="section level3">
 <h3>Saving data</h3>
 <p>we can easily write data to the disk</p>
@@ -293,12 +308,12 @@ lst</code></pre>
 <p>and just as easy we can read data from the disk</p>
 <pre class="r"><code>dat &lt;- read.csv(&quot;my_dataframe.csv&quot;)
 dat</code></pre>
-<pre><code>##   var1 var2 var3
-## 1    1    a   NA
-## 2    2    b   NA
-## 3    3    c   NA
-## 4    4    d   NA
-## 5    5    e   NA</code></pre>
+<pre><code>##   numbers letters NoData
+## 1       1       a     NA
+## 2       2       b     NA
+## 3       3       c     NA
+## 4       4       d     NA
+## 5       5       e     NA</code></pre>
 <p>as a final note, we can also remove files from the disk</p>
 <pre class="r"><code>file.remove(&quot;my_dataframe.csv&quot;)</code></pre>
 <pre><code>## [1] TRUE</code></pre>
