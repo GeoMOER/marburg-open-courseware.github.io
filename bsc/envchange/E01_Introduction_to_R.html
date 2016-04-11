@@ -112,7 +112,7 @@ $(document).ready(function () {
 </div>
 
 
-<p>Last edited: 2016-04-11 13:53:44</p>
+<p>Last edited: 2016-04-11 15:23:12</p>
 <div id="r-as-a-calculator" class="section level3">
 <h3>R as a calculator</h3>
 <p>R can be used as a simple calculator. Standard syntax is valid.</p>
@@ -282,6 +282,26 @@ lst</code></pre>
 <pre><code>## [1] a b c d e
 ## Levels: a b c d e</code></pre>
 </div>
+</div>
+<div id="saving-data" class="section level3">
+<h3>Saving data</h3>
+<p>we can easily write data to the disk</p>
+<pre class="r"><code>write.csv(df, &quot;my_dataframe.csv&quot;, row.names = FALSE)</code></pre>
+</div>
+<div id="loading-data" class="section level3">
+<h3>Loading data</h3>
+<p>and just as easy we can read data from the disk</p>
+<pre class="r"><code>dat &lt;- read.csv(&quot;my_dataframe.csv&quot;)
+dat</code></pre>
+<pre><code>##   var1 var2 var3
+## 1    1    a   NA
+## 2    2    b   NA
+## 3    3    c   NA
+## 4    4    d   NA
+## 5    5    e   NA</code></pre>
+<p>as a final note, we can also remove files from the disk</p>
+<pre class="r"><code>file.remove(&quot;my_dataframe.csv&quot;)</code></pre>
+<pre><code>## [1] TRUE</code></pre>
 </div>
 
 
