@@ -6,6 +6,11 @@
 #'
 #' Last edited: `r Sys.time()`
 #'
+#' [download this tutorial as pdf](http://marburg-open-courseware.github.io/bsc/envchange/E01_Introduction_to_R.pdf)
+#'
+#' <br>
+#'
+#'
 #' ### R as a calculator
 #' R can be used as a simple calculator. Standard syntax is valid.
 
@@ -132,4 +137,4 @@ dat
 
 file.remove("my_dataframe.csv")
 
-#' [download this tutorial as pdf](http://marburg-open-courseware.github.io/bsc/envchange/E01_Introduction_to_R.pdf)
+
