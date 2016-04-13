@@ -2,7 +2,6 @@
 #' title:
 #' author: Tim Appelhans & Hanna Meyer
 #' ---
-#' ![](../../logo.png)
 #'
 #' Last edited: `r Sys.time()`
 #'
