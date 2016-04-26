@@ -16,6 +16,12 @@ knitr::opts_knit$set(
 library(rgdal)
 library(mapview)
 
+#' first we set our working directory
+#+ wd, eval = FALSE
+
+setwd('/home/ede/tappelhans/uni/marburg/lehre/2016/ss/PS_global_change')
+
+#' then we can start working
 
 shp_file <- "data/gadm_deu/gadm_deu.shp"
 
@@ -37,8 +43,12 @@ writeOGR(obj = gadm_deu,
          driver = "ESRI Shapefile",
          overwrite_layer = TRUE)
 
+#' the `driver` argument can be used to write many different file formats
+
+ogrDrivers()
+
 #' ### raster data - geotifs
-#' #### reading raster data into R
+#' #### reading single raster data into R
 #' With package **raster** it is easy to read valid raster formats such as GeoTiff.
 #' We simply need to pass the path to the file to the `raster()` function
 library(raster)
@@ -49,6 +59,19 @@ tmean01
 plot(tmean01)
 # mapview(tmean01)
 
+
+#' #### writing single raster data to disk
+#' For writing raster data we use function `writeRaster()`
+
+writeRaster(tmean01,
+            filename = "data/tmean_deu/my_raster_layer.tif",
+            overwrite = TRUE)
+
+#' for raster data we also have multiple file type options
+
+writeFormats()
+
+#' #### reading multiple raster data into R
 #' If we want to read more than one raster file at a time,
 #' we can use R to `list.files()` in a folder containing a certain string
 #' and then pass this to `stack()`
@@ -62,8 +85,8 @@ fls
 tmean_deu <- stack(x = fls)
 tmean_deu
 
-#' #### writing raster data to disk
-#' For writing raster data we use function `writeRaster()`
+#' #### writing multiple raster data to disk
+#' this is also done using `writeRaster()`
 
 writeRaster(x = tmean_deu,
             filename = "data/tmean_deu/my_raster.tif",
