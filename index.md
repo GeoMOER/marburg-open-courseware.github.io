@@ -12,4 +12,4 @@ Environmental Informatics Marburg
 ### Global Environmental Change (19 071 06060)
 
 * [E01_Introduction_to_R](bsc/project-seminar-envchange/code-examples/gc-ce-01/E01_Introduction_to_R.html)
-* [E02_Spatial_data_IO](bsc/project-seminar-envchange/code-examples/gc-ce-02/E02_spatial_data_io.html)
+* [E02_Spatial_data_IO](bsc/project-seminar-envchange/code-examples/gc-ce-02/E02_Spatial_data_IO.html)
