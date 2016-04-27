@@ -31,7 +31,7 @@ lyr
 gadm_deu <- readOGR(dsn = shp_file,
                     layer = lyr)
 
-#plot(gadm_deu)
+plot(gadm_deu)
 mapview(gadm_deu, color = "blue")
 
 #' #### writing vector data to disk
