@@ -1,6 +1,11 @@
 #' ---
 #' title:
 #' author: Tim Appelhans & Hanna Meyer
+#'
+#' output:
+#'   html_document:
+#'     highlight: tango
+#'     self_contained: no
 #' ---
 
 #+ setup, include=FALSE
