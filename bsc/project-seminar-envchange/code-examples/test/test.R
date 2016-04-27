@@ -1,11 +1,6 @@
 #' ---
 #' title:
 #' author: Tim Appelhans & Hanna Meyer
-#'
-#' output:
-#'   html_document:
-#'     highlight: tango
-#'     self_contained: no
 #' ---
 
 #+ setup, include=FALSE
@@ -35,7 +30,7 @@ lyr
 
 # gadm_deu <- readOGR(dsn = shp_file,
 #                     layer = lyr)
-gadm_deu <- getGeoData(name = "GADM", country = "DEU", level = 3)
+gadm_deu <- getGeoData(name = "GADM", country = "DEU", level = 1)
 
 
 mapview(gadm_deu, color = "blue")
