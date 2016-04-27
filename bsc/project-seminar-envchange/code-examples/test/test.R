@@ -33,8 +33,9 @@ shp_file <- "data/gadm_deu/gadm_deu.shp"
 lyr <- ogrListLayers(dsn = shp_file)
 lyr
 
-gadm_deu <- readOGR(dsn = shp_file,
-                    layer = lyr)
+# gadm_deu <- readOGR(dsn = shp_file,
+#                     layer = lyr)
+gadm_deu <- getGeoData(name = "GADM", country = "DEU", level = 3)
 
 
 mapview(gadm_deu, color = "blue")
