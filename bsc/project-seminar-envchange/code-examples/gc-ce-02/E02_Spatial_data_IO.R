@@ -31,8 +31,8 @@ lyr
 gadm_deu <- readOGR(dsn = shp_file,
                     layer = lyr)
 
-plot(gadm_deu)
-# mapview(gadm_deu, color = "blue")
+#plot(gadm_deu)
+mapview(gadm_deu, color = "blue")
 
 #' #### writing vector data to disk
 #' the same drivers also handle writing of shapefiles
@@ -56,8 +56,8 @@ library(raster)
 tmean01 <- raster("data/tmean_deu/tmean_deu_m01.tif")
 tmean01
 
-plot(tmean01)
-# mapview(tmean01)
+#plot(tmean01)
+mapview(tmean01)
 
 
 #' #### writing single raster data to disk
