@@ -14,7 +14,7 @@ knitr::opts_knit$set(
 #' As shapefiles have layers, we need to know which layer to load
 
 library(rgdal)
-library(mapview)
+#library(mapview)
 
 #' first we set our working directory
 #+ wd, eval = FALSE
@@ -32,7 +32,7 @@ gadm_deu <- readOGR(dsn = shp_file,
                     layer = lyr)
 
 plot(gadm_deu)
-mapview(gadm_deu, color = "blue")
+#mapview(gadm_deu, color = "blue")
 
 #' #### writing vector data to disk
 #' the same drivers also handle writing of shapefiles
@@ -56,8 +56,8 @@ library(raster)
 tmean01 <- raster("data/tmean_deu/tmean_deu_m01.tif")
 tmean01
 
-#plot(tmean01)
-mapview(tmean01)
+plot(tmean01)
+#mapview(tmean01)
 
 
 #' #### writing single raster data to disk
