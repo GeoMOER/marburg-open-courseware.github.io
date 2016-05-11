@@ -1,0 +1,67 @@
+---
+title: "PS-GC-LN-04-Vector-basics"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+require(knitr)
+opts_knit$set(root.dir = '/home/hanna/Documents/Lehre/2016/Projektseminar/Excercises/session04/')
+```
+
+### Load libraries und data
+```{r}
+library(rgdal)
+library(raster)
+library(sp)
+
+setwd("/home/hanna/Documents/Lehre/2016/Projektseminar/Excercises/session04/")
+
+lyr <- ogrListLayers("DEU_adm1.shp")[1]
+gadm <- readOGR("DEU_adm1.shp",layer=lyr)
+gadm
+```
+
+### 1) Handling of SpatialDataFrames
+
+
+```{r }
+#see the attribute table of the data
+gadm@data
+#Access the first Polygon
+gadm[1,]
+#Subsetting: select the Polygon of Hessen
+hessen <- gadm[gadm$NAME_1=="Hessen",]
+plot(hessen)
+```
+
+### 2) Merge SpatialPolygonDataFrame with a table
+```{r }
+inhabitants_table <- read.csv("Inhabitants_DEU_2014.csv")
+mergedGADM <- merge(gadm, inhabitants_table, by.x = "NAME_1", by.y="Land")
+spplot(mergedGADM, zcol = "Inhabitants")
+```
+
+### 3) calculate area of the polygons and add them to attribute table
+
+
+
+```{r }
+library(rgeos)
+gArea(mergedGADM) # problem?
+gadm_UTM <- spTransform(mergedGADM,
+                        CRS("+proj=utm +zone=32 +ellps=WGS84 +datum=WGS84 +units=m +no_defs"))
+areas <- gArea(gadm_UTM,byid = TRUE) 
+mergedGADM@data$Area <- areas
+spplot(mergedGADM, zcol = "Area")
+```
+
+
+### 4) Calculate population density
+
+
+```{r }
+mergedGADM@data$Density <-  mergedGADM@data$Inhabitants/
+  ((mergedGADM@data$Area/(1000*1000)))
+spplot(mergedGADM, zcol = "Density")
+```
