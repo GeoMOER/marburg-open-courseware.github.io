@@ -46,14 +46,18 @@ files <- list.files("tmean_deu",pattern=".tif$",full.names=T)
 yeart <- stack(files) #stack the indivisual files
 yeart
 yeart <- yeart/10 #divide all by 10
-yearly_mean <- calc(yeart,mean,na.rm=TRUE) #calculate the average
+yearly_mean <- calc(yeart,mean) #calculate the average
+#or 
+yearly_mean <- mean(yeart) #calculate the average
 spplot(yearly_mean)
-yearly_sd <- calc(yeart,sd,na.rm=TRUE) #calculate the variability
+yearly_sd <- calc(yeart,sd) #calculate the variability
 spplot(yearly_sd)
 ```
 Calculate one single average value of the yearly temperatures in Germany (use ?values to extract the values of a raster)
 ```{r }
 meanValue <- mean(values(yearly_mean),na.rm=TRUE)
+#or
+meanValue <- cellStats(yearly_mean,mean)
 meanValue
 ```
 ### 3) Mask rasters
