@@ -1,48 +1,28 @@
 ---
-title: "PS-GC-LN-06-Raster-Vector calculations"
+title: "PS-GC-LN-06-2-Rescaling"
 output: html_document
 ---
-
+  
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, warning=FALSE)
 require(knitr)
-opts_knit$set(root.dir = '/home/hanna/Documents/Lehre/2016/Projektseminar/Excercises/session05/')
+opts_knit$set(root.dir = '/home/hanna/Documents/Lehre/2016/Projektseminar/Excercises/Session06/')
 ```
 
-### Load libraries und set data path
+### Load libraries and data
 ```{r message=FALSE}
 library(rgdal)
 library(raster)
 
-setwd("/home/hanna/Documents/Lehre/2016/Projektseminar/Excercises/session05/")
+setwd("/home/hanna/Documents/Lehre/2016/Projektseminar/Excercises/Session06/")
+lyr <- ogrListLayers("gadm_with_temperatures.shp")[1]
+gadm <- readOGR("gadm_with_temperatures.shp",layer=lyr)
+yearly_mean <- raster("yearly_mean.tif")
 
 ```
 
 
-### 1) Calculate the average yearly temperatures
-```{r}
-files <- list.files("tmean_deu",pattern=".tif$",full.names=T)
-yeart <- stack(files) #stack the indivisual files
-yeart <- yeart/10 #divide all by 10
-yearly_mean <- calc(yeart,mean) #calculate the average
-
-```
-
-### 2) Extract values: Use the mean of each state
-```{r}
-lyr <- ogrListLayers("DEU_adm1.shp")[1]
-gadm <- readOGR("DEU_adm1.shp",layer=lyr)
-tmean_extraction <- extract(yearly_mean,fun=mean,gadm,df=TRUE)
-tmean_extraction_sd <- extract(yearly_mean,fun=sd,gadm,df=TRUE)
-```
-attach the new data to the attributes of gadm
-```{r}
-gadm@data <- data.frame(gadm@data,"mean" = tmean_extraction$layer,
-                        "sd"=tmean_extraction_sd$layer)
-spplot(gadm,zcol = c("mean","sd"))
-```
-
-### 2) Normalize data
+### Normalize data
 For raster data:
 ```{r}
 #use the stretch function
@@ -54,7 +34,7 @@ yearly_mean_norm_V3 <- scale(yearly_mean, center = cellStats(yearly_mean,min), s
 
 ```
 
-Scaling vector data works in the same way 8except for that the easy function
+Scaling vector data works in the same way except for that the easy function
 "stretch" is not working because this is a function for raster data only.
 ```{r}
 #use formula (x-min)/(max-min)
