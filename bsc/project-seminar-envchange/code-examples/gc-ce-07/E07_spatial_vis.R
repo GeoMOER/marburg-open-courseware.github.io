@@ -48,6 +48,9 @@ tm_shape(tmean_gadm, unit = "deg", unit.size = 1) +
 
 pal <- colorRampPalette(rev(brewer.pal(9, "Spectral")))
 
+pal
+
+
 tm_shape(tmean_gadm, unit = "deg", unit.size = 1) +
   tm_polygons(col = "layer", palette = pal(6),
               auto.palette.mapping = FALSE)
@@ -60,7 +63,7 @@ tm_shape(tmean_gadm, unit = "deg", unit.size = 1) +
               breaks = seq(5, 11, 0.5)) +
   tm_legend(legend.frame = TRUE, legend.bg.color = "grey") +
   tm_style_grey(bg.color = "grey90", frame.lwd = 2) +
-  tm_compass(position = c(.01, .055), color.light = "white", size = 3) +
+  tm_compass(position = c(.01, .055), color.light = "white", size = 1) +
   tm_scale_bar(position=c(0.03, 0.015)) +
   tm_layout(legend.title.size = 0.8)
 
@@ -72,7 +75,7 @@ tm_shape(tmean_gadm, unit = "deg", unit.size = 1) +
               border.col = "grey20", border.alpha = 0.3,
               breaks = seq(5, 11, 0.5)) +
   tm_legend(legend.frame = TRUE, legend.bg.color = "grey") +
-  tm_style_grey(bg.color = "grey90", frame.lwd = 2) +
+  tm_style_classic(bg.color = "grey90", frame.lwd = 2) +
   tm_grid(projection = "longlat", labels.size = 0.5, lwd = .25,
           labels.inside.frame = TRUE) +
   tm_compass(position = c(.01, .055), color.light = "white", size = 3) +
@@ -85,18 +88,20 @@ tm_shape(tmean_gadm, unit = "deg", unit.size = 1) +
 #' ### World example
 #+ world1, fig.height = 5
 data("World")
-
+proj4string(World)
+# png("/home/ede/tappelhans/uni/marburg/lehre/2016/ss/PS_global_change/code/hpi.png",
+#     width = 30, height = 18, res = 300, units = "cm")
 tm_shape(World, projection = "robin") +
   tm_polygons(col = "HPI",
               auto.palette.mapping = FALSE,
               palette = "RdYlGn",
               title = "Happy Planet Index") +
   tm_format_World(inner.margins = .02, frame = FALSE) +
-  tm_style_classic(earth.boundary = c(-180, 180, -87, 87))  +
+  tm_style_natural(earth.boundary = c(-180, 180, -87, 87))  +
   tm_legend(position = c("left", "bottom"), bg.color = "grey95", frame = TRUE) +
   tm_credits(c("", "Robinson projection"), position = c("RIGHT", "BOTTOM")) +
   tm_grid(projection = "longlat", labels.size = .6, lwd = .25)
-
+# dev.off()
 
 #+ world2, fig.height = 6
 tm_shape(World, projection = "robin") +
@@ -106,7 +111,7 @@ tm_shape(World, projection = "robin") +
               breaks = list(NULL, c(0, 500, 2000, 5000, 10000, 25000, 50000, Inf)),
               title = c("Happy Planet Index", "GDP per capita")) +
   tm_format_World(inner.margins = .02, frame = FALSE) +
-  tm_style_natural(earth.boundary = c(-180, 180, -87, 87))  +
+  tm_style_classic(earth.boundary = c(-180, 180, -87, 87))  +
   tm_legend(position = c("left", "bottom"), bg.color = "grey95", frame = TRUE) +
   tm_credits(c("", "Robinson projection"), position = c("RIGHT", "BOTTOM"))
 
