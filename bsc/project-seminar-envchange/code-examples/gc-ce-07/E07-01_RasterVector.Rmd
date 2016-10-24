@@ -1,0 +1,43 @@
+---
+title: "PS-GC-LN-06-1-Raster-Vector calculations"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE)
+require(knitr)
+opts_knit$set(root.dir = '/home/hanna/Documents/Lehre/2016/Projektseminar/Excercises/session05/')
+```
+
+### Load libraries und set data path
+```{r message=FALSE}
+library(rgdal)
+library(raster)
+
+setwd("/home/hanna/Documents/Lehre/2016/Projektseminar/Excercises/session05/")
+
+```
+
+
+### Calculate the average yearly temperatures
+```{r}
+files <- list.files("tmean_deu",pattern=".tif$",full.names=T)
+yeart <- stack(files) #stack the indivisual files
+yeart <- yeart/10 #divide all by 10
+yearly_mean <- calc(yeart,mean) #calculate the average
+
+```
+
+### Extract values: Use the mean of each state
+```{r}
+lyr <- ogrListLayers("DEU_adm1.shp")[1]
+gadm <- readOGR("DEU_adm1.shp",layer=lyr)
+tmean_extraction <- extract(yearly_mean,fun=mean,gadm,df=TRUE)
+tmean_extraction_sd <- extract(yearly_mean,fun=sd,gadm,df=TRUE)
+```
+attach the new data to the attributes of gadm
+```{r}
+gadm@data <- data.frame(gadm@data,"mean" = tmean_extraction$layer,
+                        "sd"=tmean_extraction_sd$layer)
+spplot(gadm,zcol = c("mean","sd"))
+```

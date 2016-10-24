@@ -1,0 +1,53 @@
+---
+title: "PS-GC-LN-06-2-Rescaling"
+output: html_document
+---
+  
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE)
+require(knitr)
+opts_knit$set(root.dir = '/home/hanna/Documents/Lehre/2016/Projektseminar/Excercises/Session06/')
+```
+
+### Load libraries and data
+```{r message=FALSE}
+library(rgdal)
+library(raster)
+
+setwd("/home/hanna/Documents/Lehre/2016/Projektseminar/Excercises/Session06/")
+lyr <- ogrListLayers("gadm_with_temperatures.shp")[1]
+gadm <- readOGR("gadm_with_temperatures.shp",layer=lyr)
+yearly_mean <- raster("yearly_mean.tif")
+
+```
+
+
+### Normalize data
+For raster data:
+```{r}
+#use the stretch function
+yearly_mean_norm_V1 <- stretch(yearly_mean,0,1)
+#or use formula (x-min)/(max-min)
+yearly_mean_norm_V2 <-  (yearly_mean- cellStats(yearly_mean,min))/(cellStats(yearly_mean,max) - cellStats(yearly_mean,min))
+#or use scale with center is the min values and scale is the difference between max and min
+yearly_mean_norm_V3 <- scale(yearly_mean, center = cellStats(yearly_mean,min), scale = cellStats(yearly_mean,max) - cellStats(yearly_mean,min))
+
+```
+
+Scaling vector data works in the same way except for that the easy function
+"stretch" is not working because this is a function for raster data only.
+```{r}
+#use formula (x-min)/(max-min)
+gadm_norm_V1 <-  (gadm@data$mean- min(gadm@data$mean))/(max(gadm@data$mean) - min(gadm@data$mean))
+#or using scale function
+gadm_norm_V2 <- scale(gadm@data$mean, center = min(gadm@data$mean), scale = max(gadm@data$mean) - min(gadm@data$mean))
+#or a function from clusterSim package
+library(clusterSim)
+gadm_norm_V3 <- data.Normalization(gadm@data$mean,type="n4")
+
+library(scales)
+gadm_norm_V4 <- rescale(gadm@data$mean, to = c(0, 1))
+
+#check if they are identical:
+identical(gadm_norm_V4,gadm_norm_V1)
+```
