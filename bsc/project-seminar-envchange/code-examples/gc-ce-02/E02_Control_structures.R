@@ -105,7 +105,7 @@ x <- 1:10
 ## display all values smaller than or equal to 5 in black, the rest in red
 plot(x, col = ifelse(x <= 5, "black", "red"))
 
-#' ![](http://i.imgur.com/SMYpxgb.png)
+#' <a href="http://imgur.com/SMYpxgb"><img src="http://i.imgur.com/SMYpxgb.png" title="source: imgur.com" /></a>
 #' 
 
 #' ### loops
