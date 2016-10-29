@@ -99,11 +99,14 @@ ifelse(condition, yes, no)
 #' 
 #' and, for a given conditional input, lets you easily create a vector of yes/no 
 #' response elements.
-#+ ifelse-ex1
+#+ ifelse-ex1, eval = FALSE
 x <- 1:10
 
 ## display all values smaller than or equal to 5 in black, the rest in red
 plot(x, col = ifelse(x <= 5, "black", "red"))
+
+#' ![](http://i.imgur.com/SMYpxgb.png)
+#' 
 
 #' ### loops
 #' 
