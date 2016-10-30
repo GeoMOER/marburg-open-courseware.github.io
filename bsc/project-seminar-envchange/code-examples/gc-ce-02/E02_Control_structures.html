@@ -197,6 +197,115 @@ plot(x, col = ifelse(x &lt;= 5, &quot;black&quot;, &quot;red&quot;))</code></pre
 </div>
 <div id="functions" class="section level3">
 <h3>functions</h3>
+<p>You have probably noticed that you are working with functions in <span style="font-family: Courier New, Courier; color: #666666;"><b>R</b></span> all the time. For example, things like <code>c</code>, <code>cat</code>, <code>ifelse</code>, <code>plot</code>, etc. are all proper functions included in the <span style="font-family: Courier New, Courier; color: #666666;"><b>R</b></span> <strong>base</strong> and <strong>graphics</strong> (<code>plot</code>) packages.</p>
+<p>In fact, it is not that hard developing your own functions from scratch which proves particularly valuable if you tend to repeat one and the same work step over and over again. Custom functions can easily be defined using the built-in function <code>function</code>. Here is the basic syntax:</p>
+<pre class="r"><code>functionName = function(arguments) { 
+  code
+}</code></pre>
+<p>Suppose we want to print this year’s course title to the console, for example, here is how the referring function would – or better could – look like.</p>
+<pre class="r"><code>courseTitle &lt;- function() {
+  ## print something to the console  
+  cat(&quot;Project Seminar: Global Environmental Change 2016/17&quot;)
+} 
+
+courseTitle()</code></pre>
+<pre><code>## Project Seminar: Global Environmental Change 2016/17</code></pre>
+<p>Note that we renounced entirely the use of <code>arguments</code> since all relevant information is included in the function body (i.e., the stuff between the curly brackets)? So far, so good. How about we wanted to re-use this function for next year’s course, i.e. make it work for multiple years?</p>
+<pre class="r"><code>courseTitle &lt;- function(year = &quot;2016/17&quot;) {
+  cat(&quot;Project Seminar: Global Environmental Change&quot;, year)
+} 
+
+## current winter term (default setting)
+courseTitle()</code></pre>
+<pre><code>## Project Seminar: Global Environmental Change 2016/17</code></pre>
+<pre class="r"><code>## next winter term
+courseTitle(&quot;2017/18&quot;)</code></pre>
+<pre><code>## Project Seminar: Global Environmental Change 2017/18</code></pre>
+<p>This list of arguments is, of course, freely expandable. Let’s add a new line listing the associated course providers.</p>
+<pre class="r"><code>courseTitle &lt;- function(year = &quot;2016/17&quot;, lecturers) {
+  cat(&quot;Project Seminar: Global Environmental Change&quot;, year, &quot;\n&quot;)
+  cat(&quot;Lecturers:&quot;, paste(lecturers, collapse = &quot;, &quot;))
+} 
+
+courseTitle(lecturer = c(&quot;Tim Appelhans&quot;, &quot;Hanna Meyer&quot;, &quot;Florian Detsch&quot;))</code></pre>
+<pre><code>## Project Seminar: Global Environmental Change 2016/17 
+## Lecturers: Tim Appelhans, Hanna Meyer, Florian Detsch</code></pre>
+<p>Of course, <code>for</code> (or <code>*apply</code>) and <code>if</code>-<code>else</code> constructs can be part of the function body. As a little training exercise, let’s see if you can guess the underlying purpose of the below functions.</p>
+<pre class="r"><code>function(x) {
+  if (x &gt; 0) {
+    1
+  } else if (x == 0) {
+    0
+  } else {
+    -1
+  }
+}</code></pre>
+<pre><code>## function(x) {
+##   if (x &gt; 0) {
+##     1
+##   } else if (x == 0) {
+##     0
+##   } else {
+##     -1
+##   }
+## }</code></pre>
+<pre class="r"><code>function(x = 1:10) {
+  
+  ## create an output integer vector of the same size as 'x'
+  out &lt;- numeric(length = length(x))
+  
+  for (i in 1:length(x)) {
+    out[i] &lt;- x[i] * x[i]
+  }
+  
+  return(out)
+}</code></pre>
+<pre><code>## function(x = 1:10) {
+##   
+##   ## create an output integer vector of the same size as 'x'
+##   out &lt;- numeric(length = length(x))
+##   
+##   for (i in 1:length(x)) {
+##     out[i] &lt;- x[i] * x[i]
+##   }
+##   
+##   return(out)
+## }</code></pre>
+<pre class="r"><code>function(n = 10L) {
+  
+  ## create an output integer vector of size 'n'
+  out &lt;- integer(n)
+  
+  for (i in 1:n) {
+    if (i == 1) {
+      next
+    } else if (i == 2) {
+      out[i] &lt;- 1
+    } else {
+      out[i] &lt;- out[i-2] + out[i-1]
+    }
+  }
+  
+  return(out)
+}</code></pre>
+<pre><code>## function(n = 10L) {
+##   
+##   ## create an output integer vector of size 'n'
+##   out &lt;- integer(n)
+##   
+##   for (i in 1:n) {
+##     if (i == 1) {
+##       next
+##     } else if (i == 2) {
+##       out[i] &lt;- 1
+##     } else {
+##       out[i] &lt;- out[i-2] + out[i-1]
+##     }
+##   }
+##   
+##   return(out)
+## }</code></pre>
+<p>Now, it’s up to you. Try to write your own sum function – of course, without utilizing the built-in <code>sum</code> function of <span style="font-family: Courier New, Courier; color: #666666;"><b>R</b></span> :-)</p>
 </div>
 
 

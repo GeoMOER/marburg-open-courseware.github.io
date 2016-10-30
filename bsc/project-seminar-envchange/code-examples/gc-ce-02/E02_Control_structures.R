@@ -119,3 +119,102 @@ plot(x, col = ifelse(x <= 5, "black", "red"))
 
 #' ### functions
 #' 
+#' You have probably noticed that you are working with functions in 
+#' <span style="font-family: Courier New, Courier; color: #666666;"><b>R</b></span> 
+#' all the time. For example, things like `c`, `cat`, `ifelse`, `plot`, etc. are 
+#' all proper functions included in the <span style="font-family: Courier New, Courier; color: #666666;"><b>R</b></span> 
+#' **base** and **graphics** (`plot`) packages.
+#'  
+#' In fact, it is not that hard developing your own functions from 
+#' scratch which proves particularly valuable if you tend to repeat one and the 
+#' same work step over and over again. Custom functions can easily be defined 
+#' using the built-in function `function`. Here is the basic syntax: 
+#+ functions-1, eval = FALSE
+functionName = function(arguments) { 
+  code
+}
+
+#' Suppose we want to print this year's course title to the console, for 
+#' example, here is how the referring function would -- or better could -- look 
+#' like.
+#+ functions-ex1
+courseTitle <- function() {
+  ## print something to the console  
+  cat("Project Seminar: Global Environmental Change 2016/17")
+} 
+
+courseTitle()
+
+#' Note that we renounced entirely the use of `arguments` since all relevant 
+#' information is included in the function body (i.e., the stuff between the 
+#' curly brackets)? So far, so good. How about we wanted to re-use this 
+#' function for next year's course, i.e. make it work for multiple years?
+#+ functions-ex2
+courseTitle <- function(year = "2016/17") {
+  cat("Project Seminar: Global Environmental Change", year)
+} 
+
+## current winter term (default setting)
+courseTitle()
+
+## next winter term
+courseTitle("2017/18")
+
+#' This list of arguments is, of course, freely expandable. Let's add a new line 
+#' listing the associated course providers.
+#+ function-ex3
+courseTitle <- function(year = "2016/17", lecturers) {
+  cat("Project Seminar: Global Environmental Change", year, "\n")
+  cat("Lecturers:", paste(lecturers, collapse = ", "))
+} 
+
+courseTitle(lecturer = c("Tim Appelhans", "Hanna Meyer", "Florian Detsch"))
+
+#' Of course, `for` (or `*apply`) and `if`-`else` constructs can be part of the 
+#' function body. As a little training exercise, let's see if you can guess the 
+#' underlying purpose of the below functions.
+#+ functions-q1
+function(x) {
+  if (x > 0) {
+    1
+  } else if (x == 0) {
+    0
+  } else {
+    -1
+  }
+}
+
+#+ functions-q2
+function(x = 1:10) {
+  
+  ## create an output integer vector of the same size as 'x'
+  out <- numeric(length = length(x))
+  
+  for (i in 1:length(x)) {
+    out[i] <- x[i] * x[i]
+  }
+  
+  return(out)
+}
+
+#+ functions-q3
+function(n = 10L) {
+  
+  ## create an output integer vector of size 'n'
+  out <- integer(n)
+  
+  for (i in 1:n) {
+    if (i == 1) {
+      next
+    } else if (i == 2) {
+      out[i] <- 1
+    } else {
+      out[i] <- out[i-2] + out[i-1]
+    }
+  }
+  
+  return(out)
+}
+
+#' Now, it's up to you. Try to write your own sum function -- of course, without 
+#' utilizing the built-in `sum` function of <span style="font-family: Courier New, Courier; color: #666666;"><b>R</b></span> :-) 
