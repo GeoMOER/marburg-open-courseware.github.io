@@ -173,7 +173,9 @@ courseTitle(lecturer = c("Tim Appelhans", "Hanna Meyer", "Florian Detsch"))
 #' Of course, `for` (or `*apply`) and `if`-`else` constructs can be part of the 
 #' function body. As a little training exercise, let's see if you can guess the 
 #' underlying purpose of the below functions.
-#+ functions-q1
+#' 
+#' #### Function 1
+#+ functions-q1, eval = FALSE
 function(x) {
   if (x > 0) {
     1
@@ -184,7 +186,8 @@ function(x) {
   }
 }
 
-#+ functions-q2
+#' #### Function 2
+#+ functions-q2, eval = FALSE
 function(x = 1:10) {
   
   ## create an output integer vector of the same size as 'x'
@@ -197,7 +200,8 @@ function(x = 1:10) {
   return(out)
 }
 
-#+ functions-q3
+#' #### Function 3
+#+ functions-q3, eval = FALSE
 function(n = 10L) {
   
   ## create an output integer vector of size 'n'
@@ -216,5 +220,6 @@ function(n = 10L) {
   return(out)
 }
 
-#' Now, it's up to you. Try to write your own sum function -- of course, without 
-#' utilizing the built-in `sum` function of <span style="font-family: Courier New, Courier; color: #666666;"><b>R</b></span> :-) 
+#' Now, it's up to you. Based on your knowledge about functions gained thus far, 
+#' try to write your own sum function -- of course, without utilizing the 
+#' built-in `sum` command :-) 
