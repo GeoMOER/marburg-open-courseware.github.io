@@ -3,7 +3,11 @@
 #' author: Florian Detsch & Tim Appelhans
 #' ---
 
-#' ### if-else statements
+#' ### `if`-`else` statements
+#' 
+#' The name speaks for itself: `if`-`else` statements allow you to easily 
+#' evaluate a conditional statement and do something in response. Here's the 
+#' basic syntax:
 #' 
 #' **Level 1**: <br>If a certain condition applies, do something.
 #+ if-else-1, eval = FALSE
@@ -101,9 +105,10 @@ plot(x, col = ifelse(x <= 5, "black", "red"))
 #' ### loops (i): `for` 
 #' 
 #' <blockquote cite="https://www.r-bloggers.com/how-to-write-the-first-for-loop-in-r/">
-#' "Conceptually, a loop is a way to repeat a sequence of instructions under 
+#' <p>"Conceptually, a loop is a way to repeat a sequence of instructions under 
 #' certain conditions. They allow you to automate parts of your code that are in 
-#' need of repetition." 
+#' need of repetition."</p>
+#' <footer><a href="https://www.r-bloggers.com/how-to-write-the-first-for-loop-in-r/">Martijn Theuwissen via R-bloggers</a></footer> 
 #' </blockquote>
 #' 
 #' Although `for` loops have a rather dubious reputation among R users, they 
@@ -338,3 +343,8 @@ microbenchmark(
 # Unit: milliseconds
 # min      lq       mean     median  uq       max        neval
 # 6.244913 6.574865 7.613451 7.00327 7.836295 19.96115   100
+
+#' ### Further reading
+#' * <a href="https://www.r-bloggers.com/15-page-tutorial-for-r/">For Beginners in R (StudyTrails)</a>
+#' * <a href="http://www.noamross.net/blog/2014/4/16/vectorization-in-r--why.html">Vectorization in R: Why? (Noam Ross)</a>
+#' * <a href="https://www.r-bloggers.com/r-tutorial-on-the-apply-family-of-functions/">Apply family of functions (DataCamp)</a>

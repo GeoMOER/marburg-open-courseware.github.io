@@ -121,7 +121,8 @@ $(document).ready(function () {
 
 
 <div id="if-else-statements" class="section level3">
-<h3>if-else statements</h3>
+<h3><code>if</code>-<code>else</code> statements</h3>
+<p>The name speaks for itself: <code>if</code>-<code>else</code> statements allow you to easily evaluate a conditional statement and do something in response. Here’s the basic syntax:</p>
 <p><strong>Level 1</strong>: <br>If a certain condition applies, do something.</p>
 <pre class="r"><code>if (condition) expression</code></pre>
 <p><strong>Level 2</strong>: <br>If a certain condition applies, do something; <em>else</em> do something different.</p>
@@ -187,7 +188,12 @@ plot(x, col = ifelse(x &lt;= 5, &quot;black&quot;, &quot;red&quot;))</code></pre
 <div id="loops-i-for" class="section level3">
 <h3>loops (i): <code>for</code></h3>
 <blockquote cite="https://www.r-bloggers.com/how-to-write-the-first-for-loop-in-r/">
+<p>
 “Conceptually, a loop is a way to repeat a sequence of instructions under certain conditions. They allow you to automate parts of your code that are in need of repetition.”
+</p>
+<footer>
+<a href="https://www.r-bloggers.com/how-to-write-the-first-for-loop-in-r/">Martijn Theuwissen via R-bloggers</a>
+</footer>
 </blockquote>
 <p>Although <code>for</code> loops have a rather dubious reputation among R users, they provide a good basis for getting to know more complicated loop structures using <code>*apply</code>, <code>foreach</code> (from the easy-to-parallelize <strong>foreach</strong> package) or even <strong>Rcpp</strong>-based operations. Here is the basic syntax:</p>
 <pre class="r"><code>for (variable in sequence) {
@@ -401,6 +407,14 @@ microbenchmark(
 # Unit: milliseconds
 # min      lq       mean     median  uq       max        neval
 # 6.244913 6.574865 7.613451 7.00327 7.836295 19.96115   100</code></pre>
+</div>
+<div id="further-reading" class="section level3">
+<h3>Further reading</h3>
+<ul>
+<li><a href="https://www.r-bloggers.com/15-page-tutorial-for-r/">For Beginners in R (StudyTrails)</a></li>
+<li><a href="http://www.noamross.net/blog/2014/4/16/vectorization-in-r--why.html">Vectorization in R: Why? (Noam Ross)</a></li>
+<li><a href="https://www.r-bloggers.com/r-tutorial-on-the-apply-family-of-functions/">Apply family of functions (DataCamp)</a></li>
+</ul>
 </div>
 
 
