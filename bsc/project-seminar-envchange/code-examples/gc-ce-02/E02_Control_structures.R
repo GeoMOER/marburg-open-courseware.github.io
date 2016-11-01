@@ -3,16 +3,6 @@
 #' author: Florian Detsch & Tim Appelhans
 #' ---
 
-#+ setup, include = FALSE
-knitr::opts_knit$set(
-  root.dir = '/media/fdetsch/Permanent/work/teaching/2016/ws/PS_global_change')
-
-#' Before we start working, we first of all set our working directory. Remember 
-#' to either double Windows-style backslashes ('\\') or replace them with usual 
-#' forward slashes ('/').
-#+ wd, eval = FALSE
-setwd('/media/fdetsch/Permanent/work/teaching/2016/ws/PS_global_change')
-
 #' ### if-else statements
 #' 
 #' **Level 1**: <br>If a certain condition applies, do something.
@@ -108,13 +98,67 @@ plot(x, col = ifelse(x <= 5, "black", "red"))
 #' <a href="http://imgur.com/SMYpxgb"><img src="http://i.imgur.com/SMYpxgb.png" title="source: imgur.com" /></a>
 #' 
 
-#' ### loops
+#' ### loops (i): `for` 
 #' 
-#' #### `for`-loops
+#' <blockquote cite="https://www.r-bloggers.com/how-to-write-the-first-for-loop-in-r/">
+#' "Conceptually, a loop is a way to repeat a sequence of instructions under 
+#' certain conditions. They allow you to automate parts of your code that are in 
+#' need of repetition." 
+#' </blockquote>
 #' 
+#' Although `for` loops have a rather dubious reputation among R users, they 
+#' provide a good basis for getting to know more complicated loop structures 
+#' using `*apply`, `foreach` (from the easy-to-parallelize **foreach** package) 
+#' or even **Rcpp**-based operations. Here is the basic syntax:
 #' 
-#' #### `*apply`-loops
-#'
+#+ for-1, eval = FALSE
+for (variable in sequence) {
+  code
+}
+
+#' The subsequent code chunk, for example, prints the square of a vector `1:10` 
+#' to the console. 
+#' 
+#+ for-ex1
+for (i in 1:10) {
+  print(i^2) # same as i * i
+}
+
+#' If we wanted to write the results to an object rather than print them to the 
+#' console, here's the proper way to go.
+#' 
+#+ for-ex2
+## initialize output vector of length 10 
+x <- integer(length = 10L)
+
+for (i in 1:10) {
+  x[i] <- i^2  
+}
+
+x
+
+#' Of course, such an example makes little sense since squaring is already 
+#' vectorized in <span style="font-family: Courier New, Courier; color: #666666;"><b>R</b></span>, 
+#' rendering unnecessary the usage of `for` loops. But how about that: our goal 
+#' is to write this year's course title to the console 5 times, each time 
+#' incrementing the specified year by +1 (and hence, ending up in 2020).
+#' 
+#+ for-ex3
+for (i in 2016:2020) {
+  cat("Project Seminar: Global Environmental Change", i, "\n") 
+}
+
+#' In addition, `for` loops go along well with `if`-`else` statements. 
+#' 
+#+ for-ex4.1
+for (i in 2016:2020) {
+  ## check if current year is a leap year
+  if (i %% 4 == 0) {
+    cat(i, "is a leap year.\n")
+  } else {
+    cat(i, "is not a leap year.\n")
+  }
+}
 
 
 #' ### functions
@@ -150,7 +194,7 @@ courseTitle()
 #' curly brackets)? So far, so good. How about we wanted to re-use this 
 #' function for next year's course, i.e. make it work for multiple years?
 #+ functions-ex2
-courseTitle <- function(year = "2016/17") {
+courseTitle <- function(year = 2016) {
   cat("Project Seminar: Global Environmental Change", year)
 } 
 
@@ -158,19 +202,19 @@ courseTitle <- function(year = "2016/17") {
 courseTitle()
 
 ## next winter term
-courseTitle("2017/18")
+courseTitle(2017)
 
 #' This list of arguments is, of course, freely expandable. Let's add a new line 
 #' listing the associated course providers.
 #+ function-ex3
-courseTitle <- function(year = "2016/17", lecturers) {
+courseTitle <- function(year = 2016, lecturers) {
   cat("Project Seminar: Global Environmental Change", year, "\n")
   cat("Lecturers:", paste(lecturers, collapse = ", "))
 } 
 
 courseTitle(lecturer = c("Tim Appelhans", "Hanna Meyer", "Florian Detsch"))
 
-#' Of course, `for` (or `*apply`) and `if`-`else` constructs can be part of the 
+#' Of course, `for` (or `lapply`) and `if`-`else` constructs can be part of the 
 #' function body. As a little training exercise, let's see if you can guess the 
 #' underlying purpose of the below functions.
 #' 
@@ -223,3 +267,74 @@ function(n = 10L) {
 #' Now, it's up to you. Based on your knowledge about functions gained thus far, 
 #' try to write your own sum function -- of course, without utilizing the 
 #' built-in `sum` command :-) 
+#' 
+
+#' ### loops (ii): `lapply` 
+#' 
+#' Now that you are familiar with the most basic control structures using 
+#' `if`-`else` statements and `for` loops in conjunction with your own 
+#' functions, it's time to move on to more powerful `lapply` loops. In 
+#' principal, their syntax resembles that of common `for` loops, apart from 
+#' `variable` and `sequence` being exchanged: 
+#+ lapply-1.1, eval = FALSE
+lapply(sequence, FUN)
+
+#' (or, if we explicitly deploy the function syntax from above:)
+#+ lapply-1.2, eval = FALSE
+lapply(sequence, function(variable) {
+  code
+})
+
+#' Since `lapply` takes any kind of function as input and applies it to 
+#' each element in `sequence`, we may as a first example simply specify the 
+#' initial version of our custom function `courseTitle` from above.
+#' 
+#+ lapply-ex1
+## re-define function (to get rid of the 'lecturer' argument)
+courseTitle <- function(year = 2016) {
+  cat("Project Seminar: Global Environmental Change", year, "\n")
+} 
+
+jnk <- lapply(2016:2020, courseTitle)
+
+#' Just as previously using `for`, the course title for each particular year is 
+#' written to the console. How about the squaring example? This time, however, 
+#' we need to write a new custom function inside the `lapply` construct which 
+#' will then be applied to each element in `sequence` (*i.e.*, `1:10`).
+#' 
+#+ lapply-ex2
+lapply(1:10, function(i) {
+  i^2
+})
+
+#' And here's the big deal about `lapply`: it returns `list` objects which, as 
+#' you should have learned during the previous session, (are Tim's favorite 
+#' <span style="font-family: Courier New, Courier; color: #666666;"><b>R</b></span> 
+#' objects and) let you store all kinds of other objects in a clearly structured 
+#' fashion.
+
+#' **What you should possibly remember**:
+#' 
+#' * use vectorization whenever possible
+#' * if vectorization is not available, try to use `lapply` instead of `for`
+#' 
+#' How's that? Well...
+#' 
+#+ benchmark, eval = FALSE
+library(microbenchmark)
+
+## vectorized
+microbenchmark(
+  (1:10e3)^2
+)
+# Unit: microseconds
+# min    lq      mean     median  uq     max      neval
+# 33.014 33.7825 34.68629 34.0955 34.688 47.274   100
+
+## not vectorized
+microbenchmark(
+  lapply(1:10e3, function(i) i^2)
+)
+# Unit: milliseconds
+# min      lq       mean     median  uq       max        neval
+# 6.244913 6.574865 7.613451 7.00327 7.836295 19.96115   100
