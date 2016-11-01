@@ -99,9 +99,6 @@ x <- 1:10
 ## display all values smaller than or equal to 5 in black, the rest in red
 plot(x, col = ifelse(x <= 5, "black", "red"))
 
-#' <a href="http://imgur.com/SMYpxgb"><img src="http://i.imgur.com/SMYpxgb.png" title="source: imgur.com" /></a>
-#' 
-
 #' ### loops (i): `for` 
 #' 
 #' <blockquote cite="https://www.r-bloggers.com/how-to-write-the-first-for-loop-in-r/">
@@ -317,8 +314,9 @@ lapply(1:10, function(i) {
 #' <span style="font-family: Courier New, Courier; color: #666666;"><b>R</b></span> 
 #' objects and) let you store all kinds of other objects in a clearly structured 
 #' fashion.
+#' 
 
-#' **What you should possibly remember**:
+#' #### What you should possibly remember**:
 #' 
 #' * use vectorization whenever possible
 #' * if vectorization is not available, try to use `lapply` instead of `for`
