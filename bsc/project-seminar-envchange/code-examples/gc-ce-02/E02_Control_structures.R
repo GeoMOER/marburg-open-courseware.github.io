@@ -99,6 +99,7 @@ x <- 1:10
 ## display all values smaller than or equal to 5 in black, the rest in red
 plot(x, col = ifelse(x <= 5, "black", "red"))
 
+#' <hr>
 #' ### loops (i): `for` 
 #' 
 #' <blockquote cite="https://www.r-bloggers.com/how-to-write-the-first-for-loop-in-r/">
@@ -163,6 +164,7 @@ for (i in 2016:2020) {
 }
 
 
+#' <hr>
 #' ### functions
 #' 
 #' You have probably noticed that you are working with functions in 
@@ -271,6 +273,7 @@ function(n = 10L) {
 #' built-in `sum` command :-) 
 #' 
 
+#' <hr>
 #' ### loops (ii): `lapply` 
 #' 
 #' Now that you are familiar with the most basic control structures using 
@@ -316,7 +319,8 @@ lapply(1:10, function(i) {
 #' fashion.
 #' 
 
-#' #### What you should possibly remember**:
+#' <hr>
+#' #### What you should possibly remember:
 #' 
 #' * use vectorization whenever possible
 #' * if vectorization is not available, try to use `lapply` instead of `for`

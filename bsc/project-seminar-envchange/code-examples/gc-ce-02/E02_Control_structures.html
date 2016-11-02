@@ -183,6 +183,7 @@ if (a &lt; 10 | b &lt; 10) {
 
 ## display all values smaller than or equal to 5 in black, the rest in red
 plot(x, col = ifelse(x &lt;= 5, &quot;black&quot;, &quot;red&quot;))</code></pre>
+<hr>
 </div>
 <div id="loops-i-for" class="section level3">
 <h3>loops (i): <code>for</code></h3>
@@ -245,6 +246,7 @@ x</code></pre>
 ## 2018 is not a leap year.
 ## 2019 is not a leap year.
 ## 2020 is a leap year.</code></pre>
+<hr>
 </div>
 <div id="functions" class="section level3">
 <h3>functions</h3>
@@ -328,6 +330,7 @@ courseTitle(lecturer = c(&quot;Tim Appelhans&quot;, &quot;Hanna Meyer&quot;, &qu
   return(out)
 }</code></pre>
 <p>Now, it’s up to you. Based on your knowledge about functions gained thus far, try to write your own sum function – of course, without utilizing the built-in <code>sum</code> command :-)</p>
+<hr>
 </div>
 </div>
 <div id="loops-ii-lapply" class="section level3">
@@ -384,8 +387,9 @@ jnk &lt;- lapply(2016:2020, courseTitle)</code></pre>
 ## [[10]]
 ## [1] 100</code></pre>
 <p>And here’s the big deal about <code>lapply</code>: it returns <code>list</code> objects which, as you should have learned during the previous session, (are Tim’s favorite <span style="font-family: Courier New, Courier; color: #666666;"><b>R</b></span> objects and) let you store all kinds of other objects in a clearly structured fashion.</p>
+<hr>
 <div id="what-you-should-possibly-remember" class="section level4">
-<h4>What you should possibly remember**:</h4>
+<h4>What you should possibly remember:</h4>
 <ul>
 <li>use vectorization whenever possible</li>
 <li>if vectorization is not available, try to use <code>lapply</code> instead of <code>for</code></li>
