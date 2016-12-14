@@ -37,7 +37,10 @@ tmean_extraction_sd <- extract(yearly_mean,fun=sd,gadm,df=TRUE)
 ```
 attach the new data to the attributes of gadm
 ```{r}
-gadm@data <- data.frame(gadm@data,"mean" = tmean_extraction$layer,
-                        "sd"=tmean_extraction_sd$layer)
+gadm@data
+#gadm@data$mean <- tmean_extraction$layer
+#or even easier:
+gadm$mean <- tmean_extraction$layer
+gadm$sd <- tmean_extraction_sd
 spplot(gadm,zcol = c("mean","sd"))
 ```
