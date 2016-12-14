@@ -34,13 +34,23 @@ lyr <- ogrListLayers("DEU_adm1.shp")[1]
 gadm <- readOGR("DEU_adm1.shp",layer=lyr)
 tmean_extraction <- extract(yearly_mean,fun=mean,gadm,df=TRUE)
 tmean_extraction_sd <- extract(yearly_mean,fun=sd,gadm,df=TRUE)
+#rename columns (from "layer"" to more useful names)
+names(tmean_extraction)[2] <- "mean"
+names(tmean_extraction_sd)[2] <- "sd"
+
 ```
 attach the new data to the attributes of gadm
 ```{r}
-gadm@data
-#gadm@data$mean <- tmean_extraction$layer
-#or even easier:
-gadm$mean <- tmean_extraction$layer
-gadm$sd <- tmean_extraction_sd
-spplot(gadm,zcol = c("mean","sd"))
+###Version 1: MERGE
+head(gadm@data) # see attribute table
+result <- merge(gadm,tmean_extraction,by.x="ID_1",by.y="ID")
+#merge result with sd
+result <- merge(result,tmean_extraction_sd,by.x="ID_1",by.y="ID")
+head(result@data)
+###Version 2: Add extraction directly to attribute table
+#gadm@data$mean <- tmean_extraction$mean
+#gadm@data$sd <- tmean_extraction_sd$sd
+
+### Plot results
+spplot(result,zcol = c("mean","sd"))
 ```

@@ -50,4 +50,9 @@ gadm_norm_V4 <- rescale(gadm@data$mean, to = c(0, 1))
 
 #check if they are identical:
 identical(gadm_norm_V4,gadm_norm_V1)
+
+#add data to attribute table
+gadm@data$scaledMean <- gadm_norm_V1
+head(gadm@data)
+
 ```
