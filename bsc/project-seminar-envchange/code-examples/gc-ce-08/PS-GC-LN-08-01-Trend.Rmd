@@ -1,0 +1,62 @@
+---
+title: "PS-GC-LN-06-1-Raster-Vector calculations"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE)
+require(knitr)
+opts_knit$set(root.dir = '/home/hanna/Documents/Lehre/2016/Projektseminar/Excercises/session07_trend/')
+```
+
+### Load libraries und set data path
+```{r message=FALSE}
+library(rgdal)
+library(raster)
+
+setwd("/home/hanna/Documents/Lehre/2016/Projektseminar/Excercises/session07_trend/")
+
+```
+
+
+### Plot the time series
+```{r}
+dat <- read.table("regional_averages_tm_year.txt",sep=";",skip=1,
+                  header=TRUE)
+head(dat)
+plot(dat$Jahr,dat$Hessen,type="l")
+
+
+```
+
+### Linear model
+```{r}
+model <- lm(dat$Hessen~dat$Jahr)
+summary(model)
+library(car)
+plot(dat$Jahr,dat$Hessen,type="l")
+regLine(model)
+```
+If you need to get the slope (or other statistics) for several data
+```{r}
+#e.g. for every Bundesland
+temp <- dat[,-c(1,2,19,20)] # subset: only the temperature of the Bundesländer are included
+
+#Version1: Use apply
+test<-apply(temp,2,FUN=function(x){
+  model <- lm(x~dat$Jahr)
+  slope <- coefficients(model)[2]})
+
+# Version 2: Use a loop
+results <- c()
+for (Bundesland in 1:ncol(temp)){
+  model <- lm(temp[,Bundesland]~dat$Jahr)
+  results[Bundesland] <- coefficients(model)[2]
+}
+```
+
+### MannKendall
+```{r}
+library(Kendall)
+MannKendall(dat$Hessen)
+```
