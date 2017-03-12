@@ -1,5 +1,5 @@
 ---
-title: "PS-RSML-E01-Introduction to R"
+title: ""
 output: html_document
 ---
 
@@ -9,7 +9,7 @@ require(knitr)
 opts_knit$set(root.dir = '/home/hanna/Documents/Lehre/SoSe2017/Projektseminar/Examples/E01')
 ```
 
-### R as a calculator
+#### R as a calculator
 ```{r}
 1+1
 ```
